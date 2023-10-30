@@ -54,6 +54,14 @@ public class RequestParamController {
         //null과 ""은 다른것
         return"ok";
     }
+    @RequestMapping("/request-param-default")
+    public String requestParamDefault(
+            @RequestParam(required = true,defaultValue = "guest") String username, //default값이 있으면 required는 굳이 필요가 없다
+            @RequestParam(required = false, defaultValue = "-1") int age) { //값이 없어도되니 int로 써두되고 없으면 -1으로 나
+        log.info("username = {}, age={}", username, age);
+        //null과 ""은 다른것
+        return"ok";
+    }
 
 
 
