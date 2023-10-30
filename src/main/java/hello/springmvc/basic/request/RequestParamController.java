@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -38,31 +39,41 @@ public class RequestParamController {
             @RequestParam int age
     ) {
         log.info("username = {}, age={}", username, age);
-        return"ok";
+        return "ok";
     }
+
     @RequestMapping("/request-param-v4")
-    public String requestParamV4(String username,int age//파라미터 요청값이랑 맞아야함
+    public String requestParamV4(String username, int age//파라미터 요청값이랑 맞아야함
     ) {
         log.info("username = {}, age={}", username, age); //단순한 int, integer등 값이면 requsetParam도 생략가능
-        return"ok";
+        return "ok";
     }
+
     @RequestMapping("/request-param-required")
     public String requestParamRequired(
             @RequestParam(required = true) String username, //타입을 같게하면 생략가능 required는 필수조건
             @RequestParam(required = false) Integer age) { //Integer로 설정을 해서 null값도 받을수있게 함
         log.info("username = {}, age={}", username, age);
         //null과 ""은 다른것
-        return"ok";
+        return "ok";
     }
+
     @RequestMapping("/request-param-default")
     public String requestParamDefault(
-            @RequestParam(required = true,defaultValue = "guest") String username, //default값이 있으면 required는 굳이 필요가 없다
+            @RequestParam(required = true, defaultValue = "guest") String username, //default값이 있으면 required는 굳이 필요가 없다
             @RequestParam(required = false, defaultValue = "-1") int age) { //값이 없어도되니 int로 써두되고 없으면 -1으로 나
         log.info("username = {}, age={}", username, age);
         //null과 ""은 다른것
-        return"ok";
+        return "ok";
     }
 
+    @RequestMapping("/request-param-map")
+    public String requestParamMap(@RequestParam Map<String, Object> paramMap) {
 
-
+        log.info("username = {}, age={}", paramMap.get("username"), paramMap.get("age"));
+        {
+            //null과 ""은 다른것
+            return "ok";
+        }
+    }
 }
