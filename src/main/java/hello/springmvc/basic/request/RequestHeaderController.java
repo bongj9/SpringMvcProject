@@ -16,7 +16,7 @@ public class RequestHeaderController {
                           Locale locale,
                           @RequestHeader MultiValueMap<String, String>
                                   headerMap,
-                          @RequestHeader("host") String host,//필수 헤더 앞에는 헤더키 ,뒤에 string값에는 아무거나 와도 된다
+                          @RequestHeader("host") String host,//필수 헤더 앞에는 헤더키 ,뒤에 string값에는 아무거나 와도 된
                           @CookieValue(value = "myCookie", required = false)
                           String cookie
     ) {
