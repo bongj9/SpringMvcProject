@@ -17,16 +17,29 @@ public class RequestParamController {
         String username = request.getParameter("username");
         int age = Integer.parseInt(request.getParameter("age"));
         log.info("username={},age={}", username, age); //log를 만들어줘야 제대로 작동했는지 확인가능
-    //void면서 response값에 써버리면 그대로
+        //void면서 response값에 써버리면 그대로
         response.getWriter().write("ok"); //IOException이 생길수있어서 예외처리가 필요함
     }
 
     @RequestMapping("/request-param-v2")
-    public void requestParamV2(
+    public String requestParamV2(
             @RequestParam("username") String memberName, //Param Http요청이름 ,String에는 내가 정한 변수이름
             @RequestParam("age") int memberAge
-            ) {
+    ) {
         log.info("username = {}, age={}", memberName, memberAge);
 
+        return "ok";
+
     }
+
+    @RequestMapping("/request-param-ve")
+    public String requestParamV3(
+            @RequestParam String username, //타입을 같게하면 생략가능
+            @RequestParam int age
+    ) {
+        log.info("username = {}, age={}", username, age);
+        return"ok";
+    }
+
+
 }
