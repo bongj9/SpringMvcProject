@@ -46,6 +46,15 @@ public class RequestParamController {
         log.info("username = {}, age={}", username, age); //단순한 int, integer등 값이면 requsetParam도 생략가능
         return"ok";
     }
+    @RequestMapping("/request-param-required")
+    public String requestParamRequired(
+            @RequestParam(required = true) String username, //타입을 같게하면 생략가능 required는 필수조건
+            @RequestParam(required = false) Integer age) { //Integer로 설정을 해서 null값도 받을수있게 함
+        log.info("username = {}, age={}", username, age);
+        //null과 ""은 다른것
+        return"ok";
+    }
+
 
 
 }
