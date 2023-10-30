@@ -32,12 +32,18 @@ public class RequestParamController {
 
     }
 
-    @RequestMapping("/request-param-ve")
+    @RequestMapping("/request-param-v3")
     public String requestParamV3(
             @RequestParam String username, //타입을 같게하면 생략가능
             @RequestParam int age
     ) {
         log.info("username = {}, age={}", username, age);
+        return"ok";
+    }
+    @RequestMapping("/request-param-v4")
+    public String requestParamV4(String username,int age//파라미터 요청값이랑 맞아야함
+    ) {
+        log.info("username = {}, age={}", username, age); //단순한 int, integer등 값이면 requsetParam도 생략가능
         return"ok";
     }
 
