@@ -95,5 +95,11 @@ public class RequestParamController {
 */
         return "ok";
     }
-}
 
+    @ResponseBody
+    @RequestMapping("/model-attribute-v2")
+    public String modelAttributeV2(HelloData hellodata) {
+        log.info("username ={},age={}", hellodata.getUsername(), hellodata.getAge());
+        return "ok";             //@ModelAttribute를 뺴도 된다
+    }
+}
