@@ -52,5 +52,15 @@ public class RequestBodyJsonController {
 */
         return "OK";
     }
-}
+    @ResponseBody
+    @PostMapping("/request-body-json-v3")
+    public String requestBodyJsonV3(@RequestBody HelloData helloData) throws IOException {
+/*        log.info("messageBody={}", messageBody);
+        HelloData helloData = objectMapper.readValue(messageBody, HelloData.class);*/
+        log.info("Username={},age={}", helloData.getUsername(), helloData.getAge());
+
+        return "OK";
+    }
+ }
+
 
