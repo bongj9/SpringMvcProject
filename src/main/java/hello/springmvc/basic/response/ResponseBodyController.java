@@ -1,5 +1,6 @@
 package hello.springmvc.basic.response;
 
+import hello.springmvc.basic.HelloData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import java.io.IOException;
 
 @Slf4j
 @Controller
+//RestController = Controller랑 ResponseBody를 합쳐놓은것
 public class ResponseBodyController {
 
     @GetMapping("/response-body-string-v1")
@@ -20,7 +22,7 @@ public class ResponseBodyController {
     } //제일 기본적인 방법 response를 받아 getWrite로 하는 방법
 
     @GetMapping("/response-body-string-v2")
-    public ResponseEntity<String>responseBodyV2() {
+    public ResponseEntity<String> responseBodyV2() {
         return new ResponseEntity<>("ok", HttpStatus.OK);
     } //ResponseEcntity를 활용한 방법
 
@@ -29,5 +31,13 @@ public class ResponseBodyController {
     public String responseBodyV3() {
         return "ok";
     } //제일 깔끔한 방법
+
+    @GetMapping("/response-body-json-v1")
+    public ResponseEntity<HelloData> responseBodyJsonV1() {
+        HelloData helloData = new HelloData();
+        helloData.setUsername("userA");
+        helloData.setAge(20);
+        return new ResponseEntity<>(helloData, HttpStatus.OK);
+    }
 
 }
